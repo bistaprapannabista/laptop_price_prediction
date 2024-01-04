@@ -3,11 +3,20 @@ from flask import Flask, request
 from flask import jsonify
 from flask_cors import CORS
 import numpy as np
+import stats
+from stats import lr_r2_score, dt_r2_score, rf_r2_score, svm_r2_score, knn_r2_score
+from stats import lr_mae, dt_mae, rf_mae, svm_mae, knn_mae
 
 app = Flask(__name__)
 CORS(app)
 
 pipe = pickle.load(open('pipe.pkl','rb'))
+pipe_lr = pickle.load(open('pipe_lr.pkl','rb'))
+pipe_dt = pickle.load(open('pipe_dt.pkl','rb'))
+pipe_rf = pickle.load(open('pipe_rf.pkl','rb'))
+pipe_svm = pickle.load(open('pipe_svm.pkl','rb'))
+pipe_knn = pickle.load(open('pipe_knn.pkl','rb'))
+
 df = pickle.load(open('df.pkl','rb'))  
 
 def make_json(arr):
@@ -69,9 +78,16 @@ def predict():
         ppi = (x_res**2+y_res**2)**0.5/float(screen_size)
         query = np.array([company,type,ram,weight,touchscreen,ips,ppi,cpu,hdd,ssd,gpu,os],dtype=object)
         query = query.reshape(1,12)
-        print(np.exp(pipe.predict(query))[0])
 
-        return {"ppi":ppi}
+        output = {
+            "linear_regression":{"price":np.exp(pipe_lr.predict(query))[0],"r2_score":lr_r2_score,"mae":lr_mae},
+            "decision_tree":{"price":np.exp(pipe_dt.predict(query))[0],"r2_score":dt_r2_score,"mae":dt_mae},
+            "random_forest":{"price":np.exp(pipe_rf.predict(query))[0],"r2_score":rf_r2_score,"mae":rf_mae},
+            "support_vector_machine":{"price":np.exp(pipe_svm.predict(query))[0],"r2_score":svm_r2_score,"mae":svm_mae},
+            "k_nearest":{"price":np.exp(pipe_knn.predict(query))[0],"r2_score":knn_r2_score,"mae":knn_mae},
+        }
+
+        return {"data":output}
 
 @app.route("/")
 def home():

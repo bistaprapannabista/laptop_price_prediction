@@ -5,7 +5,7 @@ import options from './options'
 
 function App() {
   const [data, setData] = useState({});
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState();
   // const apiUrl = process.env.REACT_APP_API_URL + 'predict-price';
   const predictPrice = async () => {
     const response = await fetch("http://127.0.0.1:5000/api/predict-price",
@@ -18,7 +18,7 @@ function App() {
       }
     )
     const result = await response.json();
-    console.log(result);
+    setResult(result);
   }
 
   const inputHandler = (e: { target: { name: string, value: string } }) => {
@@ -53,9 +53,12 @@ function App() {
           Predict
         </button>
       </div>
+
       <p>
-        Edit <code>src/App.tsx</code> and save to test HMR
+        {JSON.stringify(result)}
       </p>
+
+
     </>
   )
 }
