@@ -1,136 +1,104 @@
+/* App.css */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #f1f3f8;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+    color: #535bf2;
+    text-decoration: underline;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  /* min-height: 100vh; */
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-size: 3.2em;
+    line-height: 1.1;
 }
 
 input {
-  width: 99%;
-  min-height: 50px;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  color: black;
-  font-size: medium;
-  text-align: center;
+    width: 100%;
+    min-height: 40px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
 }
 
 ::placeholder {
-  text-align: center;
+    text-align: center;
+    color: #999;
 }
 
 .flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.grid {
-  display: grid;
-}
-
-.border {
-  border: 2px solid black;
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.gap-4>* {
-  grid-gap: 1rem;
-}
-
-.grid-item {
-  margin: 5px;
-}
 
 .calculate-button {
-  display: inline-block;
-  outline: none;
-  cursor: pointer;
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-  padding: 2px 16px;
-  height: 38px;
-  min-width: 96px;
-  min-height: 40px;
-  border: none;
-  color: #fff;
-  background-color: rgb(88, 101, 242);
-  transition: background-color .17s ease, color .17s ease;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 1.4;
+    height: 38px;
+    min-width: 96px;
+    min-height: 40px;
+    border: none;
+    color: #fff;
+    background-color: #646cff;
+    transition: background-color 0.25s;
 }
 
 .calculate-button:hover {
-  background-color: rgb(71, 82, 196);
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    background-color: #535bf2;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
+    :root {
+        color: #213547;
+        background-color: #f1f3f8;
+    }
+
+    a:hover {
+        color: #747bff;
+    }
+
+    button {
+        background-color: #f9f9f9;
+    }
+}
+
+
+.input-container {
     color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }

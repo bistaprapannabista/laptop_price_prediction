@@ -79,13 +79,11 @@ def predict():
         query = np.array([company,type,ram,weight,touchscreen,ips,ppi,cpu,hdd,ssd,gpu,os],dtype=object)
         query = query.reshape(1,12)
 
-        output = {
-            "linear_regression":{"price":np.exp(pipe_lr.predict(query))[0],"r2_score":lr_r2_score,"mae":lr_mae},
-            "decision_tree":{"price":np.exp(pipe_dt.predict(query))[0],"r2_score":dt_r2_score,"mae":dt_mae},
-            "random_forest":{"price":np.exp(pipe_rf.predict(query))[0],"r2_score":rf_r2_score,"mae":rf_mae},
-            "support_vector_machine":{"price":np.exp(pipe_svm.predict(query))[0],"r2_score":svm_r2_score,"mae":svm_mae},
-            "k_nearest":{"price":np.exp(pipe_knn.predict(query))[0],"r2_score":knn_r2_score,"mae":knn_mae},
-        }
+        output = [
+                {"name":"Linear Regression","MAE":lr_mae,"R2 Score": lr_r2_score,"price": np.exp(pipe_lr.predict(query))[0]},
+                {"name":"Decision Tree","MAE":dt_mae,"R2 Score": dt_r2_score,"price":np.exp(pipe_dt.predict(query))[0]},
+                {"name":"SVM","MAE":svm_mae, "R2 Score": svm_r2_score,"price": np.exp(pipe_svm.predict(query))[0]}
+        ]
 
         return {"data":output}
 
