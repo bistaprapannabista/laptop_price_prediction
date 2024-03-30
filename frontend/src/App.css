@@ -43,3 +43,36 @@
 .read-the-docs {
   color: #888;
 }
+
+.input-container {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .input-container {
+    grid-column: span 4;
+  }
+
+  .title {
+    font-size: xx-large;
+  }
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80vw;
+}
+
+@media only screen and (max-width: 900px) {
+  .input-container {
+    grid-column: span 4;
+  }
+
+  .flex-container {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80vw;
+  }
+}
