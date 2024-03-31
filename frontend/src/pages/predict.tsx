@@ -49,6 +49,7 @@ function PredictPage() {
     }
 
     useEffect(() => {
+        console.log(JSON.stringify(result));
         if (result) {
             let accurate = result[1];
             result.forEach(item => {
@@ -84,9 +85,12 @@ function PredictPage() {
                 <div className='input-container'><label htmlFor='gpu'>GPU:</label><Select onChange={(e: { value: string, label: string }) => selectHandler(e, 'gpu')} name="gpu" placeholder="Select Gpu Brand" options={options?.gpu} /></div>
                 <div className='input-container'><label htmlFor='os'>OS:</label><Select onChange={(e: { value: string, label: string }) => selectHandler(e, 'os')} name="os" placeholder="Select OS" options={options?.os} /></div>
             </div>
-            <button className='calculate-button' onClick={predictPrice}>
-                Predict
-            </button>
+            {!result && (
+                <button className='calculate-button' onClick={predictPrice}>
+                    Predict
+                </button>
+            )}
+
 
             {result &&
                 < div className="flex-container">
@@ -102,8 +106,10 @@ function PredictPage() {
             {
                 result &&
                 <div style={{ width: "80vw", marginBottom: "30px" }}>
+
                     <Card>
-                        <p style={{ lineHeight: "1.5", fontSize: "16px", textAlign: "center" }}> The most accurate predicted price is <b>NRs. {optimal?.price && (optimal?.price * 1.6).toFixed(2)}</b> using <b>{optimal?.name}</b> having Mean Absoulute Error <b>{optimal?.MAE.toFixed(4)}</b> and R2 Score <b>{optimal && optimal["R2 Score"].toFixed(4)}</b>.</p>
+
+                        <p style={{ lineHeight: "1.5", fontSize: "16px", textAlign: "center" }}> The most accurate predicted price is <b>NRs. {(optimal?.price || 0) * 1.6}</b> using <b>{optimal?.name}</b> having Mean Absolute Error <b>{optimal?.MAE.toFixed(4)}</b> and R2 Score <b>{optimal && optimal["R2 Score"].toFixed(4)}</b>.</p>
                     </Card>
                 </div>
             }
